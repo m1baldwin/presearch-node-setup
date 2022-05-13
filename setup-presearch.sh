@@ -13,7 +13,7 @@ fi
 
 PRESEARCH_REGISTRATION_CODE=$1
 
-echo "You provided the following PRESEARCH_REGISTRATION_CODE=$PRESEARCH_REGISTRATION_CODE
+echo "You provided the following PRESEARCH_REGISTRATION_CODE=$PRESEARCH_REGISTRATION_CODE"
 
 #Update apt package and install packages to allow apt t o use repo over https
 sudo apt-get update
@@ -27,12 +27,11 @@ sudo apt-get install \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 #setup the stable repo
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/dcoker.list > /dev/null
 
 #Update Apt and install dcoker engine, containerd, and docker compose
-
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 #Hello-world
 sudo docker run hello-world
@@ -42,7 +41,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 #update group settings without needign to log out
-newgrp docker 
+newgrp docker
 
 #setup and run presearch
-./presearch-node-start.sh $PRESEARCH_REGISTRATION_CODE
+source ./presearch-node-start.sh $PRESEARCH_REGISTRATION_CODE
