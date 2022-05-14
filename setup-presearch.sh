@@ -34,13 +34,15 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 #Hello-world
-sudo docker run hello-world
+#sudo docker run hello-world
 
 #add user to docker group
-sudo groupadd docker
+#sudo groupadd docker
+echo "Adding user to docker group"
 sudo usermod -aG docker $USER
 
 #update group settings without needign to log out
+echo "running newgrp docker"
 newgrp docker
 
 #setup and run presearch
