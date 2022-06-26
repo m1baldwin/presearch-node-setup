@@ -46,4 +46,4 @@ echo "running newgrp docker"
 newgrp docker
 
 #setup and run presearch
-source ./presearch-node-start.sh $PRESEARCH_REGISTRATION_CODE
+#bash ./presearch-node-start.sh $PRESEARCH_REGISTRATION_CODE
