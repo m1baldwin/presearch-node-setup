@@ -10,18 +10,9 @@ PRESEARCH_REGISTRATION_CODE="<add key between quotes"
 
 echo "You provided the following PRESEARCH_REGISTRATION_CODE=$PRESEARCH_REGISTRATION_CODE"
 
-#Update apt package and install packages to allow apt t o use repo over https
-sudo apt-get update
-sudo apt-get install -y\
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-
 #Rest of the steps snarfed from YFA setup script here: https://controlc.com/e320e790
-
+sudo apt update && sudo apt upgrade -y
 curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
 
 #setup and run presearch
 docker run -d --name presearch-auto-updater --restart=unless-stopped -v /var/run/docker.sock:/var/run/docker.sock presearch/auto-updater --cleanup --interval 900 presearch-auto-updater presearch-node
